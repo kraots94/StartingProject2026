@@ -18,7 +18,7 @@ namespace Bowling
         
         public void UpdateFinalScore(int finalScore)
         {
-            finalScoreText.text = "Final Score: " + finalScore.ToString();
+            finalScoreText.text = finalScore.ToString();
         }
 
         public void OnRestartButtonClicked()

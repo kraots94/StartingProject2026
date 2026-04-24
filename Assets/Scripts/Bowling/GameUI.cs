@@ -4,9 +4,6 @@ namespace Bowling
 {
     public class GameUI : MonoBehaviour
     {
-        [SerializeField] private Transform spawnPosition;
-        [SerializeField] private GameObject ballPrefab;
-
         public void Show()
         {
             gameObject.SetActive(true);
@@ -19,7 +16,7 @@ namespace Bowling
 
         public void SpawnBall()
         {
-            Instantiate(ballPrefab, spawnPosition.position, Quaternion.identity);
+            GameManager.Instance.SpawnBall();
         }
     }
 }

@@ -7,7 +7,9 @@ namespace Bowling
     {
         public static GameManager Instance { get; private set; }
 
-        [SerializeField] private int score;
+        [SerializeField] private int score; 
+        SpawnManager spawnManager;
+
 
         public enum GameState
         {
@@ -27,6 +29,9 @@ namespace Bowling
 
         void Start()
         {
+            spawnManager = FindFirstObjectByType<SpawnManager>();
+            birilli = new List<Birillo>();
+
             GameObject[] birillosObjects = GameObject.FindGameObjectsWithTag("Birillo");
             
             foreach (GameObject birilloObject in birillosObjects)
@@ -41,6 +46,11 @@ namespace Bowling
             SetGameState(GameState.MainMenu);
         }
 
+        public void SpawnBall()
+        {
+            spawnManager.SpawnBall();
+        }
+
         public void SetGameState(GameState newState)
         {
             CurrentState = newState;
@@ -49,6 +59,7 @@ namespace Bowling
                 case GameState.Loading:
                     break;
                 case GameState.MainMenu:
+                    UIManager.Instance.ShowMainMenu();
                     break;
                 case GameState.Gameplay:
                     foreach (Birillo birillo in birilli)
@@ -57,8 +68,11 @@ namespace Bowling
                     }
 
                     score = 0;
+                    UIManager.Instance.ShowGameUI();
                     break;
                 case GameState.GameOver:
+                    UIManager.Instance.UpdateGameOverUI(score);
+                    UIManager.Instance.ShowGameOverUI();
                     break;
             }
         }

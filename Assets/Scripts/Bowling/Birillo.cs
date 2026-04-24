@@ -24,7 +24,6 @@ namespace Bowling
             if (collision.gameObject.CompareTag("Ball"))
             {
                 hitted = true;
-                GetComponent<Rigidbody>().isKinematic = false;
                 GameManager.Instance.BirilloHitted();
             }
         }
@@ -34,7 +33,6 @@ namespace Bowling
             hitted = false;
             transform.position = startingPosition;
             transform.rotation = startingRotation;
-            GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 }
