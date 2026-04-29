@@ -48,7 +48,7 @@ namespace Bowling
 
         public void SpawnBall()
         {
-            spawnManager.SpawnBall();
+            spawnManager.CreateBall();
         }
 
         public void SetGameState(GameState newState)
